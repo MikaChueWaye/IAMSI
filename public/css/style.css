@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: "Courier New", system-ui;
+    color: white;
+}
+
+body {
+    background-color: black;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.3);
+    justify-content: center;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+nav * {
+    margin: 0 10px 0 10px;
+}
+
+#featured {
+    height: 250px;
+    background-color: rgba(211, 136, 136, 0.3);
+}
+
+main {
+    display: flex;
+    flex-flow: column;
+    height: 100vh;
+    background-color: rgba(63, 153, 168, 0.3);
+}
+
+#shop-nav {
+    flex: 0 1 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 50px 0 50px;
+}
+
+#shop-types * {
+    margin-right: 50px;
+}
+
+#shop-content {
+    flex: 1 auto;
+    background-color: rgba(247, 0, 255, 0.3);
+}
