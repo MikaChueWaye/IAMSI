@@ -17,6 +17,17 @@
                 <a href="#">Nuit</a>
             </nav>
         </header>
+
+        <!-- message flash -->
+        <div id="flashes-container">
+            {% for flashMsg in app.flashes("succes") %}
+                <span class="flashes flashes-success">{{ flashMsg }}</span>
+            {% endfor %}
+            {% for flashMsg in app.flashes("error") %}
+                <span class="flashes flashes-error">{{ flashMsg }}</span>
+            {% endfor %}
+        </div>
+
         {% block main %}{% endblock %}
         <footer>
 
