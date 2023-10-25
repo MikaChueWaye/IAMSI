@@ -13,4 +13,10 @@ class ShopController extends AbstractController
     {
         return $this->render('shop/shop.html.twig');
     }
+
+    #[Route('/shoppingCart', name: 'shoppingCart')]
+    public function shoppingCart(): Response
+    {
+        return $this->render('shop/shoppingCart.html.twig');
+    }
 }

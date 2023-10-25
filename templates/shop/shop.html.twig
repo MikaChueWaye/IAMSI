@@ -1,7 +1,11 @@
 {% extends "base.html.twig" %}
 {% block title %}Shop{% endblock %}
 {% block main %}
-    <div id="featured"></div>
+    <div id="featured">
+        <div id="featured-content">
+            <p id="featured-title">Populaire :</p>
+        </div>
+    </div>
     <main>
         <div id="shop-nav">
             <div id="shop-types">
@@ -15,7 +19,14 @@
             </div>
         </div>
         <div id="shop-content">
-            <div id="card"></div>
+            <div id="cards">
+                <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
+            </div>
         </div>
     </main>
 {% endblock %}

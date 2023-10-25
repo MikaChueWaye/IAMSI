@@ -7,14 +7,19 @@
         {% block javascript %}{% endblock %}
     </head>
     <body>
+        <div id="wallpaper"></div>
         <header>
+            <div id="header-blur"></div>
             <nav>
                 <a href="{{ path("shop") }}">IAMSI</a>
                 <a href="#">Connexion</a>
-                <a href="#">Panier</a>
+                <a href="{{ path("shoppingCart") }}">Panier</a>
                 <a href="#">Nuit</a>
             </nav>
         </header>
         {% block main %}{% endblock %}
+        <footer>
+
+        </footer>
     </body>
 </html>
