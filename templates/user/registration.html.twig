@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+{% block title %}Registration{% endblock %}
+{% block main %}
+    <main>
+        {{ form_start(form) }}
+        <fieldset>
+            <legend>Registration</legend>
+            <div class="access-container">
+                {{ form_label(form.login, 'Login') }}
+                {{ form_widget(form.login, {'id' : 'login'}) }}
+            </div>
+            <div class="access-container">
+                {{ form_label(form.plainPassword, 'Mot de passe') }}
+                {{ form_widget(form.plainPassword, {'id' : 'plainPassword'}) }}
+            </div>
+            {{ form_widget(form.registration, {'id' : "registration-new-submit", 'label' : "Register"}) }}
+        </fieldset>
+        {{ form_rest(form) }}
+        {{ form_end(form) }}
+    </main>
+{% endblock %}
