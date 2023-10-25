@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class UserController extends AbstractController
 {
@@ -20,7 +21,7 @@ class UserController extends AbstractController
         return $this->render('user/user.html.twig');
     }
 
-    #[Route('/user/{id}/inventory', name: 'userInventory')]
+    #[Route('/user/inventory', name: 'userInventory')]
     public function userInventory(): Response
     {
         return $this->render('user/inventory.html.twig');
@@ -45,5 +46,17 @@ class UserController extends AbstractController
         }
         $flashHelper->addFormErrorsAsFlash($form);
         return $this->render('user/registration.html.twig', ['form' => $form]);
+    }
+
+    #[Route('/connection', name: 'connection',  methods: ['GET', 'POST'])]
+    public function connexion(AuthenticationUtils $authenticationUtils) : Response {
+        $lastUsername = $authenticationUtils->getLastUsername();
+        return $this->render('user/connection.html.twig', ["lastUserName" => $lastUsername]);
+    }
+
+    #[Route('/deconnection', name: 'deconnection', methods: ['POST'])]
+    public function deconnection(): never
+    {
+        throw new \Exception("Cette route n'est pas censée être appelée. Vérifiez security.yaml");
     }
 }
