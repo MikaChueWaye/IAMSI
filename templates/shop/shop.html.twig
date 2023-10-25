@@ -1,9 +1,15 @@
 {% extends "base.html.twig" %}
 {% block title %}Shop{% endblock %}
+{% block javascript %}
+<script defer type="text/javascript" src="{{ asset("js/shop.js") }}"></script>
+{% endblock %}
 {% block main %}
     <div id="featured">
-        <div id="featured-content">
-            <p id="featured-title">Populaire :</p>
+        <div id="featured-section" class="card">
+            <div class="card-border"></div>
+            <div id="featured-content" class="card-content">
+                <p id="featured-title">Populaire :</p>
+            </div>
         </div>
     </div>
     <main>
@@ -20,12 +26,34 @@
         </div>
         <div id="shop-content">
             <div id="cards">
-                <div class="card"></div>
-                <div class="card"></div>
-                <div class="card"></div>
-                <div class="card"></div>
-                <div class="card"></div>
-                <div class="card"></div>
+                <div class="card item">
+                    <div class="card-border"></div>
+                    <div class="card-content"></div>
+                </div>
+                <div class="card item">
+                    <div class="card-border"></div>
+                    <div class="card-content"></div>
+                </div>
+                <div class="card item">
+                    <div class="card-border"></div>
+                    <div class="card-content"></div>
+                </div>
+                <div class="card item">
+                    <div class="card-border"></div>
+                    <div class="card-content"></div>
+                </div>
+                <div class="card item">
+                    <div class="card-border"></div>
+                    <div class="card-content"></div>
+                </div>
+                <div class="card item">
+                    <div class="card-border"></div>
+                    <div class="card-content"></div>
+                </div>
+                <div class="card item">
+                    <div class="card-border"></div>
+                    <div class="card-content"></div>
+                </div>
             </div>
         </div>
     </main>

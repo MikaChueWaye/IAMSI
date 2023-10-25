@@ -1,5 +1,6 @@
 :root {
-    --background-color: rgba(0, 0, 0, 0.5);
+    --background-color: rgba(255, 255, 255, 0.15);
+    --background-content-color: rgba(0, 0, 0, 0.79);
 }
 
 * {
@@ -22,6 +23,7 @@
     background-position: center;
     z-index: -100;
     pointer-events: none;
+    filter: brightness(0.8);
 }
 
 body {
@@ -61,18 +63,25 @@ nav * {
 
 #featured {
     height: 250px;
-    /*background-color: rgba(211, 136, 136, 0.3);*/
     overflow: hidden;
 }
 
-#featured-content {
+#featured-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 90%;
-    height: calc(100% - 60px);
+    height: calc(100% - 20px);
     margin: 10px 5% 10px 5%;
-    padding: 20px;
+    /*padding: 20px;*/
     background-color: var(--background-color);
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    /*border: 1px solid rgba(255, 255, 255, 0.2);*/
+}
+
+#featured-content {
+    height: calc(100% - 42px);
+    padding: 20px;
 }
 
 main {
@@ -105,19 +114,74 @@ main {
 #cards {
     display: flex;
     flex-wrap: wrap;
-    max-width:922px;
+    max-width:80vw;
     gap: 8px;
     width: calc(100% - 20px);
     margin: 20px;
+    justify-content: center;
+}
+
+.item {
+    height: 260px;
+    width: 300px;
+    cursor: pointer;
+}
+
+#cards:hover > .card > .card-border {
+    opacity: 1;
 }
 
 .card {
-    height: 260px;
-    width: 300px;
     background-color: var(--background-color);
-    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-    cursor: pointer;
+    position: relative;
+}
+
+.card:hover::before,
+.card:hover > .card-border{
+    opacity: 1;
+}
+
+.card::before,
+.card > .card-border{
+    border-radius: inherit;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 500ms;
+}
+
+.card::before {
+    background: radial-gradient(
+            800px circle at var(--mouse-x) var(--mouse-y),
+            rgba(255, 255, 255, 0.1),
+            transparent 40%
+    );
+    z-index: 3;
+}
+
+.card > .card-border {
+    background: radial-gradient(
+            500px circle at var(--mouse-x) var(--mouse-y),
+            rgba(255, 255, 255, 0.4),
+            transparent 40%
+    );
+    z-index: 1;
+}
+
+.card > .card-content {
+    height: calc(100% - 2px);
+    width: calc(100% - 2px);
+    background-color: var(--background-content-color);
+    border-radius: inherit;
+    margin: 1px;
+    position: relative;
+    z-index: 2;
 }
 
 footer {
