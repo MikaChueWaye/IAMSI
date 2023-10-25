@@ -17,6 +17,17 @@ security:
             lazy: true
             provider: app_user_provider
 
+            form_login:
+                login_path: connection
+                check_path: connection
+                default_target_path: shop
+                always_use_default_target_path: true
+                enable_csrf: true
+
+            logout:
+                path: deconnection
+                target: shop
+
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 

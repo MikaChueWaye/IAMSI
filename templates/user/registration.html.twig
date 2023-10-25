@@ -4,7 +4,7 @@
     <main>
         {{ form_start(form) }}
         <fieldset>
-            <legend>Registration</legend>
+            <legend>Inscription</legend>
             <div class="access-container">
                 {{ form_label(form.login, 'Login') }}
                 {{ form_widget(form.login, {'id' : 'login'}) }}
@@ -13,7 +13,7 @@
                 {{ form_label(form.plainPassword, 'Mot de passe') }}
                 {{ form_widget(form.plainPassword, {'id' : 'plainPassword'}) }}
             </div>
-            {{ form_widget(form.registration, {'id' : "registration-new-submit", 'label' : "Register"}) }}
+            {{ form_widget(form.registration, {'id' : "registration-new-submit", 'label' : "S'inscrire"}) }}
         </fieldset>
         {{ form_rest(form) }}
         {{ form_end(form) }}
