@@ -40,6 +40,8 @@ body {
 header {
 }
 
+
+
 /*#header-blur {*/
 /*    position: absolute;*/
 /*    top: 0;*/
@@ -59,6 +61,13 @@ nav {
 
 nav * {
     margin: 0 5vw 0 5vw;
+}
+
+#deconnexion-button {
+    margin: 1px 0 0 0;
+    background: none;
+    border: none;
+    font-size: medium;
 }
 
 #featured {
