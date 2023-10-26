@@ -11,7 +11,7 @@ use Symfony\Component\Security\Http\Event\LogoutEvent;
 class AuthenticationSubscriber
 {
     public function __construct(
-        private RequestStack $requestStack,
+        private readonly RequestStack $requestStack,
     ){}
 
     #[AsEventListener]

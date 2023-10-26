@@ -5,6 +5,7 @@
         <title>{% block title %}{% endblock %}</title>
         <link rel="stylesheet" type="text/css" href="{{ asset("css/base.css") }}">
         {% block css %}{% endblock %}
+        <script defer type="text/javascript" src="{{ asset("js/shop.js") }}"></script>
         {% block javascript %}{% endblock %}
     </head>
     <body>
@@ -12,19 +13,19 @@
         <header>
             <div id="header-blur"></div>
             <nav>
-                <a href="{{ path("shop") }}">IAMSI</a>
+                <a class="card" href="{{ path("shop") }}">IAMSI</a>
                 {% if not is_granted('ROLE_USER') %}
-                    <a href="{{ path("connection") }}">Connexion / S'inscrire</a>
+                    <a class="card" href="{{ path("connection") }}">Connexion / S'inscrire</a>
                 {% endif %}
-                <a href="{{ path("shoppingCart") }}">Panier</a>
+                <a class="card" href="{{ path("shoppingCart") }}">Panier</a>
                 {% if is_granted('ROLE_USER') %}
-                    <a href="{{ path("user") }}">Profil</a>
-                    <a href="{{ path("userInventory") }}">Inventaire</a>
-                    <form method="post" action="{{ path("deconnection") }}">
+                    <a class="card" href="{{ path("user") }}">Profil</a>
+                    <a class="card" href="{{ path("userInventory") }}">Inventaire</a>
+                    <form class="card" method="post" action="{{ path("deconnection") }}">
                         <button id="disconnection-button">Déconnexion</button>
                     </form>
                 {% endif %}
-                <a href="#">Nuit</a>
+                <a class="card" href="#">Nuit</a>
             </nav>
         </header>
 

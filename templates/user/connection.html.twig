@@ -1,9 +1,6 @@
 {% extends "base.html.twig" %}
 {% block title %}Connection{% endblock %}
-{% block css %}<link rel="stylesheet" type="text/css" href="{{ asset("css/connection.css") }}">{% endblock %}
-{% block javascript %}
-<script defer type="text/javascript" src="{{ asset("js/shop.js") }}"></script>
-{% endblock %}
+{% block css %}<link rel="stylesheet" type="text/css" href="{{ asset("css/connectionAndRegistration.css") }}">{% endblock %}
 {% block main %}
     <main>
         <form action="{{ path('connection') }}" method="post">

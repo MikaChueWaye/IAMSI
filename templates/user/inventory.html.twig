@@ -1,2 +1,42 @@
 {% extends "base.html.twig" %}
 {% block title %}Inventory{% endblock %}
+{% block css %}<link rel="stylesheet" type="text/css" href="{{ asset("css/inventory.css") }}">{% endblock %}
+{% block main %}
+<main>
+    <div class="user-info card">
+
+    </div>
+    <table>
+        <tr>
+            <td class="inventory-item-image"></td>
+            <td class="inventory-item-name">Nom</td>
+            <td class="inventory-item-qtty">Quantité</td>
+        </tr>
+        <tr>
+            <td class="inventory-item-image">Image</td>
+            <td class="inventory-item-name">Nom</td>
+            <td class="inventory-item-qtty">9999</td>
+        </tr>
+        <tr>
+            <td class="inventory-item-image">Image</td>
+            <td class="inventory-item-name">Nom</td>
+            <td class="inventory-item-qtty">9999</td>
+        </tr>
+        <tr>
+            <td class="inventory-item-image">Image</td>
+            <td class="inventory-item-name">Nom</td>
+            <td class="inventory-item-qtty">9999</td>
+        </tr>
+        <tr>
+            <td class="inventory-item-image">Image</td>
+            <td class="inventory-item-name">Nom</td>
+            <td class="inventory-item-qtty">9999</td>
+        </tr>
+        <tr>
+            <td class="inventory-item-image">Image</td>
+            <td class="inventory-item-name">Nom</td>
+            <td class="inventory-item-qtty">9999</td>
+        </tr>
+    </table>
+</main>
+{% endblock %}
