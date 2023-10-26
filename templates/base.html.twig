@@ -3,7 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}{% endblock %}</title>
-        <link rel="stylesheet" type="text/css" href="{{ asset("css/style.css") }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset("css/base.css") }}">
+        {% block css %}{% endblock %}
         {% block javascript %}{% endblock %}
     </head>
     <body>
@@ -13,8 +14,7 @@
             <nav>
                 <a href="{{ path("shop") }}">IAMSI</a>
                 {% if not is_granted('ROLE_USER') %}
-                    <a href="{{ path("connection") }}">Connexion</a>
-                    <a href="{{ path("registration") }}">Inscription</a>
+                    <a href="{{ path("connection") }}">Connexion / S'inscrire</a>
                 {% endif %}
                 <a href="{{ path("shoppingCart") }}">Panier</a>
                 {% if is_granted('ROLE_USER') %}

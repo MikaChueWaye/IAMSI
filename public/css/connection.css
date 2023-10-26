@@ -1,0 +1,41 @@
+main {
+    margin: 50px 30vw 50px 30vw;
+}
+
+fieldset {
+    padding: 50px;
+    border-radius: 10px;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input {
+    background-color: var(--background-color);
+    border-radius: 10px;
+    padding: 10px 20px 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: transparent;
+    height: 30px;
+    width: 200px;
+    border-radius: 10px;
+    align-self: end;
+}
+
+#registration-text {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 8px;
+}
+
+#registration-text:hover a {
+    color: royalblue;
+    transition: color 500ms;
+}
