@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block title %}Create product{% endblock %}
+{% block main %}
+    <main>
+        {{ form_start(form) }}
+        <fieldset>
+            <legend>Inscription</legend>
+            {{ form_label(form.name, 'Nom : ') }}
+            {{ form_widget(form.name, {'id' : 'name'}) }}
+
+            {{ form_label(form.price, 'Prix : ') }}
+            {{ form_widget(form.price, {'id' : 'price'}) }}
+
+            {{ form_label(form.ref, 'Reference : ') }}
+            {{ form_widget(form.ref, {'id' : 'ref'}) }}
+
+            {{ form_label(form.imageProduct, 'Image du produit : ') }}
+            {{ form_widget(form.imageProduct, {'required' : '', 'attr' : {'accept' : 'image/png, image/jpeg'}}) }}
+
+            {{ form_label(form.type, 'Type : ') }}
+            {{ form_widget(form.type, {'id' : 'type', 'attr' : {'placeholder' : 'Blocs / Equipements / Ressources'}}) }}
+
+            {{ form_widget(form.create, {'id' : "creation-new-submit", 'label' : "Créer"}) }}
+            <div id="fieldset-background" class="card"></div>
+        </fieldset>
+        {{ form_rest(form) }}
+        {{ form_end(form) }}
+    </main>
+{% endblock %}

@@ -18,7 +18,6 @@
                 {% endif %}
                 <a href="{{ path("shoppingCart") }}">Panier</a>
                 {% if is_granted('ROLE_USER') %}
-                    <a href="{{ path("user") }}">Profil</a>
                     <a href="{{ path("userInventory") }}">Inventaire</a>
                     <form method="post" action="{{ path("deconnection") }}">
                         <button id="disconnection-button">Déconnexion</button>
