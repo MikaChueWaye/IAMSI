@@ -1,5 +1,6 @@
 :root {
-    --background-color: rgba(0, 0, 0, 0);
+    --background-color: rgba(255, 255, 255, 0);
+    --shop-background-color: rgba(255, 255, 255, 0.05);
     --light-effect-color: rgba(255, 255, 255, 0.2);
     --transparent-effect: 50%;
 }
@@ -50,7 +51,7 @@ nav * {
     margin: 0 5vw 0 5vw;
 }
 
-#deconnexion-button {
+#disconnection-button {
     margin: 1px 0 0 0;
     background: none;
     border: none;

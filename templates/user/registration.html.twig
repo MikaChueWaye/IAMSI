@@ -9,9 +9,9 @@
         {{ form_start(form) }}
         <fieldset>
             <legend>Inscription</legend>
-            {{ form_label(form.login, 'Login') }}
+            {{ form_label(form.login, 'Login : ') }}
             {{ form_widget(form.login, {'id' : 'login'}) }}
-            {{ form_label(form.plainPassword, 'Mot de passe') }}
+            {{ form_label(form.plainPassword, 'Mot de passe : ') }}
             {{ form_widget(form.plainPassword, {'id' : 'plainPassword'}) }}
             {{ form_widget(form.registration, {'id' : "registration-new-submit", 'label' : "S'inscrire"}) }}
             <div id="fieldset-background" class="card"></div>
