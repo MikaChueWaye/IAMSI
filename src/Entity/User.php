@@ -11,8 +11,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[UniqueEntity('login', message : "Login déjà utilisé par un autre membre du site !")]
-
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -38,9 +38,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?\DateTimeInterface $creationDate = null;
 
     #[ORM\PrePersist]
-    public function prePersistExempleChamp() : void {
-        $this->datePublication = new \DateTime();
+    public function prePersistCreationDate() : void {
+        $this->creationDate = new \DateTime();
     }
+
     public function getId(): ?int
     {
         return $this->id;
