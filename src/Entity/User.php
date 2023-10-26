@@ -37,6 +37,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $creationDate = null;
 
+    #[ORM\PrePersist]
+    public function prePersistExempleChamp() : void {
+        $this->datePublication = new \DateTime();
+    }
     public function getId(): ?int
     {
         return $this->id;

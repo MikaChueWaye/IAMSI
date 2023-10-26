@@ -17,14 +17,6 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class UserController extends AbstractController
 {
     #[isGranted('ROLE_USER')]
-    #[Route('/user', name: 'user')]
-    public function user(): Response
-    {
-        $user = $this->getUser();
-        return $this->render('user/user.html.twig', ['user' => $user]);
-    }
-
-    #[isGranted('ROLE_USER')]
     #[Route('/user/inventory', name: 'userInventory')]
     public function userInventory(): Response
     {
@@ -47,10 +39,9 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $password = $form["plainPassword"]->getData();
             $userManager->processNewUser($user, $password);
-            $user->setCreationDate(new \DateTime());
             $entityManager->persist($user);
             $entityManager->flush();
-            $this->addFlash("succes", "Inscription réussi!");
+            $this->addFlash("success", "Inscription réussi!");
             return $this->redirectToRoute('shop');
         }
         $flashHelper->addFormErrorsAsFlash($form);
