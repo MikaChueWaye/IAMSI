@@ -1,6 +1,5 @@
 :root {
-    --background-color: rgba(255, 255, 255, 0.15);
-    --background-content-color: rgba(0, 0, 0, 0.79);
+    --background-color: rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -77,8 +76,6 @@ nav * {
 
 #featured-section {
     display: flex;
-    justify-content: center;
-    align-items: center;
     width: 90%;
     height: calc(100% - 20px);
     margin: 10px 5% 10px 5%;
@@ -136,23 +133,25 @@ main {
     cursor: pointer;
 }
 
-#cards:hover > .card > .card-border {
-    opacity: 1;
-}
+/*#cards:hover > .card > .card-border {*/
+/*    opacity: 1;*/
+/*}*/
 
 .card {
     background-color: var(--background-color);
     border-radius: 10px;
     position: relative;
+    /*border: 1px solid rgba(255, 255, 255, 0.1);*/
 }
 
-.card:hover::before,
-.card:hover > .card-border{
+.card:hover::before
+/*.card:hover > .card-border*/
+{
     opacity: 1;
 }
 
-.card::before,
-.card > .card-border{
+.card::before {
+/*.card > .card-border{*/
     border-radius: inherit;
     content: "";
     height: 100%;
@@ -167,30 +166,70 @@ main {
 
 .card::before {
     background: radial-gradient(
-            800px circle at var(--mouse-x) var(--mouse-y),
-            rgba(255, 255, 255, 0.1),
-            transparent 40%
-    );
-    z-index: 3;
-}
-
-.card > .card-border {
-    background: radial-gradient(
-            500px circle at var(--mouse-x) var(--mouse-y),
-            rgba(255, 255, 255, 0.4),
-            transparent 40%
+            900px circle at var(--mouse-x) var(--mouse-y),
+            rgba(255, 255, 255, 0.2),
+            transparent 50%
     );
     z-index: 1;
 }
 
-.card > .card-content {
-    height: calc(100% - 2px);
-    width: calc(100% - 2px);
-    background-color: var(--background-content-color);
-    border-radius: inherit;
-    margin: 1px;
-    position: relative;
-    z-index: 2;
+/*.card > .card-border {*/
+/*    background: radial-gradient(*/
+/*            500px circle at var(--mouse-x) var(--mouse-y),*/
+/*            rgba(255, 255, 255, 0.5),*/
+/*            transparent 40%*/
+/*    );*/
+/*    z-index: 1;*/
+/*}*/
+
+/*.card > .card-content {*/
+/*    height: calc(100% - 2px);*/
+/*    width: calc(100% - 2px);*/
+/*    !*background-color: var(--background-content-color);*!*/
+/*    border-radius: inherit;*/
+/*    margin: 1px;*/
+/*    position: relative;*/
+/*    z-index: 2;*/
+/*}*/
+
+.item:active {
+    top: 2px;
+}
+
+/*.item:active .card-content {*/
+/*    zoom: 1.01;*/
+/*}*/
+
+.card-image {
+    height: calc(60% - 20px);
+    width: calc(100% - 40px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 20px 0 20px;
+    z-index: 10;
+}
+
+.card-image img {
+    height: 100%;
+    z-index: 11;
+}
+
+.card-info {
+    height: calc(40% - 40px);
+    width: calc(100% - 40px);
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.price-tag {
+    color: white;
+    border-radius: 10px;
+    padding: 2px 5px 2px 5px;
+    background-color: indianred;
 }
 
 footer {
