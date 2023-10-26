@@ -12,19 +12,24 @@
             <div id="header-blur"></div>
             <nav>
                 <a href="{{ path("shop") }}">IAMSI</a>
-                <a href="{{ path("connection") }}">Connexion</a>
-                <a href="{{ path("registration") }}">Inscription</a>
+                {% if not is_granted('ROLE_USER') %}
+                    <a href="{{ path("connection") }}">Connexion</a>
+                    <a href="{{ path("registration") }}">Inscription</a>
+                {% endif %}
                 <a href="{{ path("shoppingCart") }}">Panier</a>
+                {% if is_granted('ROLE_USER') %}
+                    <a href="{{ path("user") }}">Profil</a>
+                    <a href="{{ path("userInventory") }}">Inventaire</a>
+                    <form method="post" action="{{ path("deconnection") }}">
+                        <button id="deconnexion-button">Déconnexion</button>
+                    </form>
+                {% endif %}
                 <a href="#">Nuit</a>
-                <form method="post" action="{{ path("deconnection") }}">
-                    <button id="deconnexion-button">Déconnexion</button>
-                </form>
             </nav>
         </header>
 
-        <!-- message flash -->
         <div id="flashes-container">
-            {% for flashMsg in app.flashes("succes") %}
+            {% for flashMsg in app.flashes("success") %}
                 <span class="flashes flashes-success">{{ flashMsg }}</span>
             {% endfor %}
             {% for flashMsg in app.flashes("error") %}
