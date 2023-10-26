@@ -1,5 +1,7 @@
 :root {
     --background-color: rgba(0, 0, 0, 0);
+    --light-effect-color: rgba(255, 255, 255, 0.2);
+    --transparent-effect: 50%;
 }
 
 * {
@@ -53,6 +55,40 @@ nav * {
     background: none;
     border: none;
     font-size: medium;
+}
+
+.card {
+    background-color: var(--background-color);
+    border-radius: 10px;
+    position: relative;
+}
+
+.card:hover::before
+{
+    opacity: 1;
+}
+
+.card::before {
+    /*.card > .card-border{*/
+    border-radius: inherit;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 500ms;
+}
+
+.card::before {
+    background: radial-gradient(
+            900px circle at var(--mouse-x) var(--mouse-y),
+            var(--light-effect-color),
+            transparent var(--transparent-effect)
+    );
+    z-index: -100;
 }
 
 footer {
