@@ -1,0 +1,39 @@
+fieldset {
+    position: relative;
+    --light-effect-color: rgba(255, 255, 255, 0.1);
+    --transparent-effect: 30%;
+    border-radius: 10px;
+    padding: 20px 50px 20px 50px;
+    margin: 20px 20vw 20px 20vw;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--shop-background-color);
+}
+
+#fieldset-background {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    height: calc(100% + 10px);
+    width: 100%;
+    border-radius: inherit;
+}
+
+input {
+    background-color: var(--background-color);
+    border-radius: 10px;
+    padding: 10px 20px 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    margin-bottom: 20px;
+    z-index: 10;
+}
+
+fieldset button {
+    background-color: transparent;
+    height: 30px;
+    width: 200px;
+    border-radius: 10px;
+    align-self: end;
+    z-index: 10;
+}

@@ -18,6 +18,7 @@
                     <a class="card" href="{{ path("connection") }}">Connexion / S'inscrire</a>
                 {% endif %}
                 <a class="card" href="{{ path("shoppingCart") }}">Panier</a>
+                <a class="card" href="{{ path("product") }}">Produits</a>
                 {% if is_granted('ROLE_USER') %}
                     <a class="card" href="{{ path("userInventory") }}">Inventaire</a>
                     <form class="card" method="post" action="{{ path("deconnection") }}">

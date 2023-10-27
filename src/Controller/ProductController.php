@@ -43,7 +43,7 @@ class ProductController extends AbstractController
             $entityManager->persist($product);
             $entityManager->flush();
             $this->addFlash("success", "Produit créé!");
-            return $this->redirectToRoute('shop');
+            return $this->redirectToRoute('product');
         }
         $flashHelper->addFormErrorsAsFlash($form);
         $productList = $productRepository->findAll();
