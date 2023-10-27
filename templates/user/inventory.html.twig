@@ -3,10 +3,26 @@
 {% block css %}<link rel="stylesheet" type="text/css" href="{{ asset("css/inventory.css") }}">{% endblock %}
 {% block main %}
 <main>
-    <div class="user-info card">
-
+    <div class="user-info-section">
+        <div class="user-info card">
+            <div class="user-img"><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSB0UJlC9UCN7z7BiD_rHsjV7EImEYvCRSHsR1CVFhdcEXDQUDP" alt="profile picture"></div>
+            <p class="user-name">Patate</p>
+        </div>
+        <div class="user-stat card">
+            <table id="user-stat-table">
+                <tr>
+                    <td>Date de création :</td>
+                    <td>27 Octobre 2023</td>
+                </tr>
+                <tr>
+                    <td>Nombre de blocs possédés :</td>
+                    <td>Beaucoup</td>
+                </tr>
+            </table>
+        </div>
     </div>
-    <table>
+
+    <table id="user-inventory-table">
         <tr class="card">
             <td class="inventory-item-image"></td>
             <td class="inventory-item-name">Nom</td>

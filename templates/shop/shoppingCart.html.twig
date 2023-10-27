@@ -1,2 +1,19 @@
 {% extends "base.html.twig" %}
 {% block title %}Shopping Cart{% endblock %}
+{% block css %}<link rel="stylesheet" type="text/css" href="{{ asset("css/shoppingCart.css") }}">{% endblock %}
+{% block main %}
+<main>
+    <div id="shopping-cart">
+        <fieldset>
+            <legend>Panier :</legend>
+            <div id="shopping-cart-content"></div>
+            <div id="fieldset-background" class="card"></div>
+        </fieldset><fieldset>
+            <legend>Facture :</legend>
+            <div id="shopping-cart-receipt"></div>
+            <div id="fieldset-background" class="card"></div>
+        </fieldset>
+    </div>
+
+</main>
+{% endblock %}

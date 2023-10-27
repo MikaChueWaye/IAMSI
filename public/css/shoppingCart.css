@@ -1,0 +1,33 @@
+#shopping-cart {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 5vw 20px 5vw;
+}
+
+#shopping-cart-content {
+    height: 100vh;
+    width: 60vw;
+}
+
+#shopping-cart-receipt {
+    height: 100vh;
+    width: 20vw;
+}
+
+fieldset {
+    position: relative;
+    --light-effect-color: rgba(255, 255, 255, 0.1);
+    --transparent-effect: 30%;
+    border-radius: 10px;
+    padding: 20px;
+    border: none;
+}
+
+#fieldset-background {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    height: calc(100% + 10px);
+    width: 100%;
+    border-radius: inherit;
+}
