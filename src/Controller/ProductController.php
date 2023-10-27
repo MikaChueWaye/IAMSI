@@ -6,7 +6,7 @@ use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use App\Service\FlashMessageHelper;
-use Doctrine\ORM\EntityManager;
+use App\Service\ProductManagerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,25 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
 {
-    #[Route('/product/create', name: 'createProduct', methods: ['GET', 'POST'])]
-    public function createProduct(Request $request, EntityManagerInterface $entityManager, FlashMessageHelper $flashHelper ): Response {
-        $product = new Product();
-        $form = $this->createForm(ProductType::class, $product, [
-            'method' => 'POST',
-            'action' => $this->generateURL('createProduct')
-        ]);
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($product);
-            $entityManager->flush();
-            $this->addFlash("success", "Produit créé!");
-            return $this->redirectToRoute('shop');
-        }
-        $flashHelper->addFormErrorsAsFlash($form);
-        return $this->render('product/createProduct.html.twig', ['form' => $form]);
-    }
-
     #[Route('/product/{filter}/filter', name: 'filterProduct')]
     public function filterProduct(string $filter,ProductRepository $productRepository): Response
     {
@@ -49,8 +30,23 @@ class ProductController extends AbstractController
     }
 
     #[Route('/product', name: 'product')]
-    public function products(ProductRepository $productRepository): Response {
+    public function product(ProductManagerInterface $productManager, ProductRepository $productRepository, Request $request, EntityManagerInterface $entityManager, FlashMessageHelper $flashHelper): Response {
+        $product = new Product();
+        $form = $this->createForm(ProductType::class, $product, [
+            'method' => 'POST',
+            'action' => $this->generateURL('product')
+        ]);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $picture = $form["imageProduct"]->getData();
+            $productManager->saveProductPicture($product, $picture);
+            $entityManager->persist($product);
+            $entityManager->flush();
+            $this->addFlash("success", "Produit créé!");
+            return $this->redirectToRoute('shop');
+        }
+        $flashHelper->addFormErrorsAsFlash($form);
         $productList = $productRepository->findAll();
-        return $this->render('product/productList.html.twig', ["products" => $productList]);
+        return $this->render('product/productList.html.twig', ["products" => $productList, "form" => $form]);
     }
 }

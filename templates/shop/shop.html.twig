@@ -23,69 +23,12 @@
         </div>
         <div id="shop-content">
             <div id="cards">
-                <div class="card item">
-                    <div class="card-image">
-                        <img src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/6f/Carved_Pumpkin_%28N%29_JE5.png" alt="pumpkin">
-                    </div>
-                    <div class="card-info">
-                        <p>Pumpkin</p>
-                        <p class="price-tag">10 €</p>
-                    </div>
-                </div>
-                <div class="card item">
-                    <div class="card-image">
-                        <img src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/6f/Carved_Pumpkin_%28N%29_JE5.png" alt="pumpkin">
-                    </div>
-                    <div class="card-info">
-                        <p>Pumpkin</p>
-                        <p class="price-tag">10 €</p>
-                    </div>
-                </div>
-                <div class="card item">
-                    <div class="card-image">
-                        <img src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/6f/Carved_Pumpkin_%28N%29_JE5.png" alt="pumpkin">
-                    </div>
-                    <div class="card-info">
-                        <p>Pumpkin</p>
-                        <p class="price-tag">10 €</p>
-                    </div>
-                </div>
-                <div class="card item">
-                    <div class="card-image">
-                        <img src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/6f/Carved_Pumpkin_%28N%29_JE5.png" alt="pumpkin">
-                    </div>
-                    <div class="card-info">
-                        <p>Pumpkin</p>
-                        <p class="price-tag">10 €</p>
-                    </div>
-                </div>
-                <div class="card item">
-                    <div class="card-image">
-                        <img src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/6f/Carved_Pumpkin_%28N%29_JE5.png" alt="pumpkin">
-                    </div>
-                    <div class="card-info">
-                        <p>Pumpkin</p>
-                        <p class="price-tag">10 €</p>
-                    </div>
-                </div>
-                <div class="card item">
-                    <div class="card-image">
-                        <img src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/6f/Carved_Pumpkin_%28N%29_JE5.png" alt="pumpkin">
-                    </div>
-                    <div class="card-info">
-                        <p>Pumpkin</p>
-                        <p class="price-tag">10 €</p>
-                    </div>
-                </div>
-                <div class="card item">
-                    <div class="card-image">
-                        <img src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/6f/Carved_Pumpkin_%28N%29_JE5.png" alt="pumpkin">
-                    </div>
-                    <div class="card-info">
-                        <p>Pumpkin</p>
-                        <p class="price-tag">10 €</p>
-                    </div>
-                </div>
+                {% if products is empty %}
+                    <p> Aucun produit disponible en ce moment :(</p>
+                {% endif %}
+                {% for product in products %}
+                    {{ include('product/product.html.twig', {'product' : product}) }}
+                {% endfor %}
             </div>
         </div>
     </main>

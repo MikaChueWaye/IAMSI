@@ -1,4 +1,10 @@
-<div class="card-info">
-    <p>Pumpkin</p>
-    <p class="price-tag">0.01euros</p>
+<div class="card item">
+    <div class="card-image">
+        <img src="{{ product.imageProduct ? asset("img/products/uploads/" ~ product.imageProduct ~ "" ) : asset("img/products/undefined.png") }}"
+             alt="product picture">
+    </div>
+    <div class="card-info">
+        <p>{{ product.name }}</p>
+        <p class="price-tag">{{ product.price }}€</p>
+    </div>
 </div>

@@ -1,6 +1,31 @@
 {% extends 'base.html.twig' %}
 {% block title %}Products{% endblock %}
 {% block main %}
+
+    {{ form_start(form) }}
+    <fieldset>
+        <legend>Creation de produit</legend>
+        {{ form_label(form.name, 'Nom : ') }}
+        {{ form_widget(form.name, {'id' : 'name'}) }}
+
+        {{ form_label(form.price, 'Prix : ') }}
+        {{ form_widget(form.price, {'id' : 'price'}) }}
+
+        {{ form_label(form.ref, 'Reference : ') }}
+        {{ form_widget(form.ref, {'id' : 'ref'}) }}
+
+        {{ form_label(form.imageProduct, 'Image du produit : ') }}
+        {{ form_widget(form.imageProduct, {'required' : '', 'attr' : {'accept' : 'image/png, image/jpeg'}}) }}
+
+        {{ form_label(form.type, 'Type : ') }}
+        {{ form_widget(form.type, {'id' : 'type', 'attr' : {'placeholder' : 'Blocs / Equipements / Ressources'}}) }}
+
+        {{ form_widget(form.create, {'id' : "creation-new-submit", 'label' : "Créer"}) }}
+        <div id="fieldset-background" class="card"></div>
+    </fieldset>
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+
     <div id="products">
         {% if products is empty %}
             <p> Aucun produit disponible en ce moment :(</p>
@@ -8,4 +33,5 @@
         {% for product in products %}
             {{ include('product/product.html.twig', {'product' : product}) }}
         {% endfor %}
+    </div>
 {% endblock %}
