@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Product;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -17,10 +18,26 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('price', IntegerType::class)
+            ->add('price',
+                IntegerType::class,
+                [
+                    'attr' => [
+                        'min' => 0
+                    ]
+                ]
+            )
             ->add('ref', TextType::class)
-            ->add('imageProduct', FileType::class)
-            ->add('type', TextType::class)
+            ->add('imageProduct', FileType::class, ["mapped" => false])
+            ->add('type',
+                ChoiceType::class,
+                [
+                    'choices'  => [
+                        'Bloc' => 'Bloc',
+                        'Equipement' => 'Equipement',
+                        'Ressource' => 'Ressource',
+                    ],
+                ]
+            )
             ->add('create', SubmitType::class)
         ;
     }

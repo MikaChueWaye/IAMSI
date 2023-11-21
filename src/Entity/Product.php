@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\File;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
@@ -16,7 +17,9 @@ class Product
 
     #[Assert\NotNull]
     #[Assert\NotBlank]
-    #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 4, minMessage: 'Il faut au moins 4 caractères!')]
+    #[Assert\Length( max: 20, maxMessage: "Vous ne pouvez utiliser que 20 caractères")]
+    #[ORM\Column(length: 180, unique: true)]
     private ?string $name = null;
 
     #[Assert\NotNull]
@@ -29,6 +32,12 @@ class Product
     private ?string $ref = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[File(
+        maxSize: "10M",
+        maxSizeMessage: "L'image ne peut pas dépasser 10Mo.",
+        extensions: ["jpg", "png"],
+        extensionsMessage: "Les seuls formats autorisés sont .jpg et .png."
+    )]
     private ?string $imageProduct = null;
 
     #[Assert\NotNull]

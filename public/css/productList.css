@@ -29,6 +29,15 @@ input {
     z-index: 10;
 }
 
+select {
+    background-color: var(--background-color);
+    border-radius: 10px;
+    padding: 10px 20px 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    margin-bottom: 20px;
+    z-index: 10;
+}
+
 fieldset button {
     background-color: transparent;
     height: 30px;
@@ -36,4 +45,11 @@ fieldset button {
     border-radius: 10px;
     align-self: end;
     z-index: 10;
+}
+
+.help-input-form {
+    text-align: left;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 10px;
 }

@@ -7,7 +7,7 @@
     <fieldset>
         <legend>Creation de produit</legend>
         {{ form_label(form.name, 'Nom : ') }}
-        {{ form_widget(form.name, {'id' : 'name'}) }}
+        {{ form_widget(form.name, {'id' : 'name', 'attr' : {'placeholder' : 'Entre 4 et 20 caractères'}}) }}
 
         {{ form_label(form.price, 'Prix : ') }}
         {{ form_widget(form.price, {'id' : 'price'}) }}
@@ -16,10 +16,11 @@
         {{ form_widget(form.ref, {'id' : 'ref'}) }}
 
         {{ form_label(form.imageProduct, 'Image du produit : ') }}
+        <p class="help-input-form">Format .jpg ou .png  (10Mo)</p>
         {{ form_widget(form.imageProduct, {'required' : '', 'attr' : {'accept' : 'image/png, image/jpeg'}}) }}
 
         {{ form_label(form.type, 'Type : ') }}
-        {{ form_widget(form.type, {'id' : 'type', 'attr' : {'placeholder' : 'Blocs / Equipements / Ressources'}}) }}
+        {{ form_widget(form.type, {'id' : 'type'}) }}
 
         {{ form_widget(form.create, {'id' : "creation-new-submit", 'label' : "Créer"}) }}
         <div id="fieldset-background" class="card"></div>
