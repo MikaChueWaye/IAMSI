@@ -6,8 +6,46 @@
     <div id="shopping-cart">
         <fieldset>
             <legend>Panier :</legend>
-            <div id="shopping-cart-content"></div>
-            <div id="fieldset-background" class="card"></div>
+            <div id="shopping-cart-content">
+                <table>
+                    <tr class="card">
+                        <td></td>
+                        <td>Nom</td>
+                        <td>Description</td>
+                        <td>Prix</td>
+                        <td>Qtte</td>
+                    </tr>
+                    <tr class="card">
+                        <td><img src="{{ asset("img/products/undefined.png") }}" alt="product-image"></td>
+                        <td>banane</td>
+                        <td>c'est bon</td>
+                        <td>trop cher</td>
+                        <td><label>
+                                <input type="number" max="999">
+                            </label></td>
+                    </tr>
+                    <tr class="card">
+                        <td><img src="{{ asset("img/products/undefined.png") }}" alt="product-image"></td>
+                        <td>banane</td>
+                        <td>c'est bon</td>
+                        <td>trop cher</td>
+                        <td><label>
+                                <input type="number" max="999" min="1">
+                            </label></td>
+                    </tr>
+                    <tr class="card">
+                        <td><img src="{{ asset("img/products/undefined.png") }}" alt="product-image"></td>
+                        <td>banane</td>
+                        <td>c'est bon</td>
+                        <td>trop cher</td>
+                        <td><label>
+                                <input type="number" max="999">
+                            </label></td>
+                    </tr>
+                </table>
+
+            </div>
+            <div id="fieldset-background"></div>
         </fieldset><fieldset>
             <legend>Facture :</legend>
             <div id="shopping-cart-receipt"></div>

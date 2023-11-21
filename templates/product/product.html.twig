@@ -1,12 +1,24 @@
-<div id="product" class="card item">
-    <div class="card-image">
-        <img src="{{ product.imageProduct ? asset("img/products/uploads/" ~ product.imageProduct ~ "" ) : asset("img/products/undefined.png") }}"
-             alt="product picture">
+{% if product is not null %}
+    <div id="product" class="card item">
+        <div class="card-image">
+            <img src="{{ product.imageProduct ? asset("img/products/uploads/" ~ product.imageProduct ~ "" ) : asset("img/products/undefined.png") }}"
+                 alt="product picture">
+        </div>
+        <div class="card-info">
+            <button class="delete-product">X</button>
+            <p>{{ product.name }}</p>
+            <p class="price-tag">{{ product.price }} €</p>
+        </div>
     </div>
-    <div class="card-info">
-        <button class="delete-product">X</button>
+    {% else %}
+        <div class="card item">
+            <div class="card-image">
+                <img src="{{ asset("img/products/undefined.png") }}"
+                     alt="product picture">
+            </div>
+            <div class="card-info">
+                <p>Ce produit n'est pas disponible</p>
+            </div>
+        </div>
+{% endif %}
 
-        <p>{{ product.name }}</p>
-        <p class="price-tag">{{ product.price }} €</p>
-    </div>
-</div>
