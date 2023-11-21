@@ -20,15 +20,6 @@ fieldset {
     border-radius: inherit;
 }
 
-input {
-    background-color: var(--background-color);
-    border-radius: 10px;
-    padding: 10px 20px 10px 20px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    margin-bottom: 20px;
-    z-index: 10;
-}
-
 fieldset button {
     background-color: transparent;
     height: 30px;
