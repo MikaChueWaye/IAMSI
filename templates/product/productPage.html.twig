@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {% if product is not null %}
+        {{ product.name }}
+        {% else %}
+        no data
+    {% endif %}
+{% endblock %}
+{% block main %}
+    {{ include('product/product.html.twig', {'product' : product}) }}
+{% endblock %}
