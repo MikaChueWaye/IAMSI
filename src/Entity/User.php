@@ -22,6 +22,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[Assert\NotNull]
     #[Assert\NotBlank]
+    #[Assert\Length(min: 4, minMessage: 'Le login doit posséder au moins 4 caractères!')]
+    #[Assert\Length( max: 20, maxMessage: "Vous ne pouvez utiliser que 20 caractères pour le login!")]
     #[ORM\Column(length: 180, unique: true)]
     private ?string $login = null;
 

@@ -54,3 +54,10 @@ button {
     color: royalblue;
     transition: color 500ms;
 }
+
+.help-input-form {
+    text-align: left;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 10px;
+}
