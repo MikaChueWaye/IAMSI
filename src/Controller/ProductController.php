@@ -9,6 +9,7 @@ use App\Service\FlashMessageHelper;
 use App\Service\ProductManagerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -49,4 +50,14 @@ class ProductController extends AbstractController
         $productList = $productRepository->findAll();
         return $this->render('product/productList.html.twig', ["products" => $productList, "form" => $form]);
     }
+
+    #[Route('/product/{id}/delete', name: 'deleteProduct', options: ["expose" => true], methods: ["DELETE"])]
+    public function methodeExemple(Request $request, ProductRepository $productRepository ,EntityManagerInterface $entityManager, int $id): JsonResponse
+    {
+        $product = $productRepository->find($id);
+        $entityManager->remove($product);
+        $entityManager->flush();
+        return new JsonResponse(null, 204);
+    }
+
 }

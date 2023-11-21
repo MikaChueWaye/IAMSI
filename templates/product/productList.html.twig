@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}Products{% endblock %}
 {% block css %}<link rel="stylesheet" type="text/css" href="{{ asset("css/productList.css") }}">{% endblock %}
+{% block javascript %}<script defer type="text/javascript" src="{{ asset("js/product.js") }}"></script>{% endblock %}
 {% block main %}
 
     {{ form_start(form) }}
