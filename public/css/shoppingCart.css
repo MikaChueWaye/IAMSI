@@ -21,6 +21,7 @@ fieldset {
     border-radius: 10px;
     padding: 20px;
     border: none;
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
 #fieldset-background {
@@ -30,4 +31,10 @@ fieldset {
     height: calc(100% + 10px);
     width: 100%;
     border-radius: inherit;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid white;
+    margin: 10px 10px 10px 10px;
 }
