@@ -14,6 +14,9 @@ img{
     right: 0;
     width: 200px;
     margin: 30px;
+    padding: 30px;
+    border: solid rgba(255, 255, 255, 0.1) 1px;
+    border-radius: 10px;
     z-index: 10;
 }
 
