@@ -8,48 +8,49 @@
     {% endif %}
 {% endblock %}
 {% block main %}
-    <fieldset>
-        <legend><h1>{{ product.name }}</h1></legend>
-        <label for="id">Id :</label>
-        <input id="id" type="text" value="{{ product.id }}" readonly/>
-        <label for="name">Nom :</label>
-        <input id="name" type="text" value="{{ product.name }}"/>
-        <label for="ref">Ref :</label>
-        <input id="ref" type="text" value="{{ product.ref }}"/>
-        <label for="type">Type :</label>
-        <input id="type" type="text" value="{{ product.type }}"/>
-        <label for="price">Prix :</label>
-        <input id="price" type="text" value="{{ product.price }}"/>
-        <label for="img">Image :</label>
-        <input id="img" type="file"/>
-        <input class="submit-button" type="submit">
-        <div id="fieldset-background" class="card"></div>
-    </fieldset>
-
 {#    <fieldset>#}
 {#        <legend><h1>{{ product.name }}</h1></legend>#}
-{#        <img src="{{ product.imageProduct ? asset("img/products/uploads/" ~ product.imageProduct ~ "" ) : asset("img/products/undefined.png") }}" alt="product_image">#}
-{#        <div class="product-info">#}
-{#            <label for="id">Id :</label>#}
-{#            <p>{{ product.id }}</p>#}
-{#        </div>#}
-{#        <div class="product-info">#}
-{#            <label for="name">Nom :</label>#}
-{#            <p>{{ product.name }}</p>#}
-{#        </div>#}
-{#        <div class="product-info">#}
-{#            <label for="ref">Ref :</label>#}
-{#            <p>{{ product.ref }}</p>#}
-{#        </div>#}
-{#        <div class="product-info">#}
-{#            <label for="type">Type :</label>#}
-{#            <p>{{ product.type }}</p>#}
-{#        </div>#}
-{#        <div class="product-info">#}
-{#            <label for="price">Prix :</label>#}
-{#            <p>{{ product.price }}</p>#}
-{#        </div>#}
+{#        <label for="id">Id :</label>#}
+{#        <input id="id" type="text" value="{{ product.id }}" readonly/>#}
+{#        <label for="name">Nom :</label>#}
+{#        <input id="name" type="text" value="{{ product.name }}"/>#}
+{#        <label for="ref">Ref :</label>#}
+{#        <input id="ref" type="text" value="{{ product.ref }}"/>#}
+{#        <label for="type">Type :</label>#}
+{#        <input id="type" type="text" value="{{ product.type }}"/>#}
+{#        <label for="price">Prix :</label>#}
+{#        <input id="price" type="text" value="{{ product.price }}"/>#}
+{#        <label for="img">Image :</label>#}
+{#        <input id="img" type="file"/>#}
+{#        <input class="submit-button" type="submit">#}
 {#        <div id="fieldset-background" class="card"></div>#}
 {#    </fieldset>#}
+
+    <fieldset>
+        <legend><h1>{{ product.name }}</h1></legend>
+        <img src="{{ product.imageProduct ? asset("img/products/uploads/" ~ product.imageProduct ~ "" ) : asset("img/products/undefined.png") }}" alt="product_image">
+        <div class="product-info">
+            <label for="id">Id :</label>
+            <p>{{ product.id }}</p>
+        </div>
+        <div class="product-info">
+            <label for="name">Nom :</label>
+            <p>{{ product.name }}</p>
+        </div>
+        <div class="product-info">
+            <label for="ref">Ref :</label>
+            <p>{{ product.ref }}</p>
+        </div>
+        <div class="product-info">
+            <label for="type">Type :</label>
+            <p>{{ product.type }}</p>
+        </div>
+        <div class="product-info">
+            <label for="price">Prix :</label>
+            <p>{{ product.price }}</p>
+        </div>
+        <button class="card">Ajouter au panier</button>
+        <div id="fieldset-background" class="card"></div>
+    </fieldset>
 
 {% endblock %}
