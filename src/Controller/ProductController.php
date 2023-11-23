@@ -8,11 +8,13 @@ use App\Repository\ProductRepository;
 use App\Service\FlashMessageHelper;
 use App\Service\ProductManagerInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class ProductController extends AbstractController
 {
@@ -30,6 +32,7 @@ class ProductController extends AbstractController
         return $this->render('product/productPage.html.twig', ["product" => $product]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/product', name: 'product')]
     public function product(ProductManagerInterface $productManager, ProductRepository $productRepository, Request $request, EntityManagerInterface $entityManager, FlashMessageHelper $flashHelper): Response {
         $product = new Product();
@@ -51,10 +54,9 @@ class ProductController extends AbstractController
         return $this->render('product/productList.html.twig', ["products" => $productList, "form" => $form]);
     }
 
+    #[IsGranted('PRODUCT_DELETE', 'product')]
     #[Route('/product/{id}/delete', name: 'deleteProduct', options: ["expose" => true], methods: ["DELETE"])]
-    public function methodeExemple(Request $request, ProductRepository $productRepository ,EntityManagerInterface $entityManager, int $id): JsonResponse
-    {
-        $product = $productRepository->find($id);
+    public function deleteProduct(#[MapEntity] Product $product, EntityManagerInterface $entityManager) : Response {
         $entityManager->remove($product);
         $entityManager->flush();
         return new JsonResponse(null, 204);

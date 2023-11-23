@@ -5,7 +5,9 @@
                  alt="product picture">
         </div>
         <div class="card-info">
-            <button class="delete-product" data-product-id={{ product.id }}>X</button>
+            {% if is_granted('PRODUCT_DELETE', product) %}
+                <button class="delete-product" data-product-id={{ product.id }}>X</button>
+            {%  endif %}
             <p>{{ product.name }}</p>
             <p class="price-tag">{{ product.price }} €</p>
         </div>
