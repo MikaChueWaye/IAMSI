@@ -179,7 +179,7 @@ nav *:hover {
 }
 
 footer {
-    height: 100px;
+    /*height: 100px;*/
 }
 
 input {
@@ -189,4 +189,13 @@ input {
     border: 1px solid rgba(255, 255, 255, 0.4);
     margin-bottom: 20px;
     z-index: 10;
+}
+
+#fieldset-background {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    height: calc(100% + 10px);
+    width: 100%;
+    border-radius: inherit;
 }

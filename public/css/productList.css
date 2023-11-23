@@ -11,15 +11,6 @@ fieldset {
     background-color: var(--shop-background-color);
 }
 
-#fieldset-background {
-    position: absolute;
-    top: -10px;
-    left: 0;
-    height: calc(100% + 10px);
-    width: 100%;
-    border-radius: inherit;
-}
-
 input, select {
     background-color: var(--background-color);
     border-radius: 10px;
