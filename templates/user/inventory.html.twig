@@ -2,17 +2,16 @@
 {% block title %}Inventory{% endblock %}
 {% block css %}<link rel="stylesheet" type="text/css" href="{{ asset("css/inventory.css") }}">{% endblock %}
 {% block main %}
-<main>
+    <main>
     <div class="user-info-section">
         <div class="user-info card">
-            <div class="user-img"><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSB0UJlC9UCN7z7BiD_rHsjV7EImEYvCRSHsR1CVFhdcEXDQUDP" alt="profile picture"></div>
-            <p class="user-name">Patate</p>
+            <p class="user-name">{{ user.login }}</p>
         </div>
         <div class="user-stat card">
             <table id="user-stat-table">
                 <tr>
                     <td>Date de création :</td>
-                    <td>27 Octobre 2023</td>
+                    <td>{{ user.creationDate.format('d-m-Y')}}</td>
                 </tr>
                 <tr>
                     <td>Nombre de blocs possédés :</td>
@@ -23,36 +22,17 @@
     </div>
 
     <table id="user-inventory-table">
-        <tr class="card">
-            <td class="inventory-item-image"></td>
-            <td class="inventory-item-name">Nom</td>
-            <td class="inventory-item-qtty">Quantité</td>
-        </tr>
-        <tr class="card">
-            <td class="inventory-item-image">Image</td>
-            <td class="inventory-item-name">Nom</td>
-            <td class="inventory-item-qtty">9999</td>
-        </tr>
-        <tr class="card">
-            <td class="inventory-item-image">Image</td>
-            <td class="inventory-item-name">Nom</td>
-            <td class="inventory-item-qtty">9999</td>
-        </tr>
-        <tr class="card">
-            <td class="inventory-item-image">Image</td>
-            <td class="inventory-item-name">Nom</td>
-            <td class="inventory-item-qtty">9999</td>
-        </tr>
-        <tr class="card">
-            <td class="inventory-item-image">Image</td>
-            <td class="inventory-item-name">Nom</td>
-            <td class="inventory-item-qtty">9999</td>
-        </tr>
-        <tr class="card">
-            <td class="inventory-item-image">Image</td>
-            <td class="inventory-item-name">Nom</td>
-            <td class="inventory-item-qtty">9999</td>
-        </tr>
+        {% if inventory is empty %}
+            <p> Votre inventaire est vide au boulot!</p>
+        {% else %}
+            {%  for ligne in inventory %}
+                    <tr class="card">
+                        <td><img src="{{ ligne.product.imageProduct ? asset("img/products/uploads/" ~ ligne.product.imageProduct ~ "" ) : asset("img/products/undefined.png") }}" alt="product picture"></td>
+                        <td class="inventory-item-name">{{ ligne.product.name }}</td>
+                        <td class="inventory-item-qtty">{{ ligne.quantity }}</td>
+                    </tr>
+            {% endfor %}
+        {% endif %}
     </table>
 </main>
 {% endblock %}

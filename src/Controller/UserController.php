@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\InventoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\User;
 use App\Form\UserType;
@@ -18,9 +19,13 @@ class UserController extends AbstractController
 {
     #[isGranted('ROLE_USER')]
     #[Route('/user/inventory', name: 'userInventory')]
-    public function userInventory(): Response
+    public function userInventory(InventoryRepository $inventoryRepository): Response
     {
-        return $this->render('user/inventory.html.twig');
+        $user = $this->getUser();
+        $userId = $user->getId();
+        $inventory = $inventoryRepository->findBy(["owner"=>$userId]);
+
+        return $this->render('user/inventory.html.twig', ["inventory"=>$inventory, "user" => $user]);
     }
 
     #[Route('/registration', name: 'registration', methods: ['GET', 'POST'])]

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -38,6 +40,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $creationDate = null;
+
+    #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Inventory::class, orphanRemoval: true)]
+    private Collection $inventory;
+
+    public function __construct()
+    {
+        $this->inventory = new ArrayCollection();
+    }
 
     #[ORM\PrePersist]
     public function prePersistCreationDate() : void {
@@ -122,6 +132,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCreationDate(\DateTimeInterface $creationDate): static
     {
         $this->creationDate = $creationDate;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Inventory>
+     */
+    public function getInventory(): Collection
+    {
+        return $this->inventory;
+    }
+
+    public function addInventory(Inventory $inventory): static
+    {
+        if (!$this->inventory->contains($inventory)) {
+            $this->inventory->add($inventory);
+            $inventory->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInventory(Inventory $inventory): static
+    {
+        if ($this->inventory->removeElement($inventory)) {
+            // set the owning side to null (unless already changed)
+            if ($inventory->getOwner() === $this) {
+                $inventory->setOwner(null);
+            }
+        }
 
         return $this;
     }
