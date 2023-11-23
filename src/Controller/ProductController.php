@@ -25,7 +25,7 @@ class ProductController extends AbstractController
         return $this->render('product/createProduct.html.twig');
     }
 
-    #[Route('/product/{idProduct}/read', name: 'readProduct')]
+    #[Route('/product/{idProduct}', name: 'readProduct')]
     public function readProduct(int $idProduct, ProductRepository $productRepository): Response
     {
         $product = $productRepository->find($idProduct);

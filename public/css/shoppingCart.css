@@ -59,3 +59,25 @@ input {
     margin: unset;
     padding: 5px 0 5px 5px;
 }
+
+.receipt-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.receipt-item > div{
+    white-space: nowrap;
+}
+
+.dot {
+    border-bottom: dashed 1px white;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.line {
+    border-bottom: solid 1px white;
+    width: 100%;
+    margin-bottom: 5px;
+}

@@ -21,25 +21,25 @@
                         <td>c'est bon</td>
                         <td>trop cher</td>
                         <td><label>
-                                <input type="number" max="999">
+                                <input type="number" max="999" min="1" value="5">
                             </label></td>
                     </tr>
                     <tr class="card">
                         <td><img src="{{ asset("img/products/undefined.png") }}" alt="product-image"></td>
-                        <td>banane</td>
+                        <td>patate</td>
                         <td>c'est bon</td>
                         <td>trop cher</td>
                         <td><label>
-                                <input type="number" max="999" min="1">
+                                <input type="number" max="999" min="1" value="5">
                             </label></td>
                     </tr>
                     <tr class="card">
                         <td><img src="{{ asset("img/products/undefined.png") }}" alt="product-image"></td>
-                        <td>banane</td>
+                        <td>tomate</td>
                         <td>c'est bon</td>
                         <td>trop cher</td>
                         <td><label>
-                                <input type="number" max="999">
+                                <input type="number" max="999" min="1" value="5">
                             </label></td>
                     </tr>
                 </table>
@@ -47,8 +47,32 @@
             </div>
             <div id="fieldset-background"></div>
         </fieldset><fieldset>
-            <legend>Facture :</legend>
-            <div id="shopping-cart-receipt"></div>
+            <legend>Récapitulatif de la commande :</legend>
+            <div id="shopping-cart-receipt">
+                <p style="margin-bottom: 5px">Articles:</p>
+                <div class="receipt-item">
+                    <div>- Banane</div>
+                    <div class="dot"></div>
+                    <div>50€</div>
+                </div>
+                <div class="receipt-item">
+                    <div>- Patate</div>
+                    <div class="dot"></div>
+                    <div>50€</div>
+                </div>
+                <div class="receipt-item">
+                    <div>- Tomate</div>
+                    <div class="dot"></div>
+                    <div>50€</div>
+                </div><br>
+                <div class="line"></div><br>
+                <div class="receipt-item">
+                    <div style="white-space: nowrap">Montant total:</div>
+                    <div class="dot"></div>
+                    <div>150€</div>
+                </div>
+                <p style="font-size: x-small">Le total de la commande inclut la TVA</p>
+            </div>
             <div id="fieldset-background" class="card"></div>
         </fieldset>
     </div>
