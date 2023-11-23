@@ -1,5 +1,5 @@
 {% if product is not null %}
-    <div id="product" class="card item">
+    <a id="product" class="card item" href="{{ path("readProduct", {'idProduct': product.id}) }}">
         <div class="card-image">
             <img src="{{ product.imageProduct ? asset("img/products/uploads/" ~ product.imageProduct ~ "" ) : asset("img/products/undefined.png") }}"
                  alt="product picture">
@@ -11,9 +11,9 @@
             <p>{{ product.name }}</p>
             <p class="price-tag">{{ product.price }} €</p>
         </div>
-    </div>
+    </a>
     {% else %}
-        <div class="card item">
+        <div class="card item" >
             <div class="card-image">
                 <img src="{{ asset("img/products/undefined.png") }}"
                      alt="product picture">
