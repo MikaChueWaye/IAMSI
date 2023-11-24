@@ -62,4 +62,12 @@ class ProductController extends AbstractController
         return new JsonResponse(null, 204);
     }
 
+    #[Route('/search', name: 'searchProduct', methods: ["POST"])]
+    public function searchProduct(Request $request, ProductRepository $productRepository)
+    {
+        $searchTerm = $request->request->get('searchTerm');
+        $products = $productRepository->findProduct($searchTerm);
+        return $this->render('shop/shop.html.twig', ["products" => $products]);
+    }
+
 }

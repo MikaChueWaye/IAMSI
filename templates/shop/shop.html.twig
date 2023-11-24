@@ -19,7 +19,12 @@
                 <a>Ressources</a>
             </div>
             <div>
-                <p>icones recherche + filtre</p>
+                <form class="card" method="post" action="{{ path("searchProduct") }}">
+                    <label>
+                        <input type="text" name="searchTerm" placeholder="Rechercher...">
+                    </label>
+                    <button type="submit" id="search-button">Rechercher</button>
+                </form>
             </div>
         </div>
         <div id="shop-content">
