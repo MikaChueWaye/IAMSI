@@ -19,10 +19,10 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class ProductController extends AbstractController
 {
     #[Route('/product/{filter}/filter', name: 'filterProduct')]
-    public function filterProduct(string $filter,ProductRepository $productRepository): Response
+    public function filterProduct(string $filter, ProductRepository $productRepository): Response
     {
-        $productRepository->findBy(["type"=>$filter]);
-        return $this->render('product/createProduct.html.twig');
+        $products = $productRepository->findBy(["type" => $filter]);
+        return $this->render('shop/shop.html.twig', ['products' => $products, 'filter'=>$filter]);
     }
 
     #[Route('/product/{idProduct}', name: 'readProduct')]

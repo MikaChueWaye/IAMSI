@@ -13,10 +13,10 @@
     <main>
         <div id="shop-nav">
             <div id="shop-types">
-                <a>Tout</a>
-                <a>Blocs</a>
-                <a>Equipements</a>
-                <a>Ressources</a>
+                <a href="{{ path('shop')}}">Tout</a>
+                <a href="{{ path('filterProduct', {'filter': 'Blocs'}) }}">Blocs</a>
+                <a href="{{ path('filterProduct', {'filter': 'Equipements'}) }}">Equipements</a>
+                <a href="{{ path('filterProduct', {'filter': 'Ressources'}) }}">Ressources</a>
             </div>
             <div>
                 <form class="card" method="post" action="{{ path("searchProduct") }}">

@@ -32,9 +32,9 @@ class ProductType extends AbstractType
                 ChoiceType::class,
                 [
                     'choices'  => [
-                        'Bloc' => 'Bloc',
-                        'Equipement' => 'Equipement',
-                        'Ressource' => 'Ressource',
+                        'Blocs' => 'Blocs',
+                        'Equipements' => 'Equipements',
+                        'Ressources' => 'Ressources',
                     ],
                 ]
             )
