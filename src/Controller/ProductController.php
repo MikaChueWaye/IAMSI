@@ -8,6 +8,7 @@ use App\Repository\ProductRepository;
 use App\Service\FlashMessageHelper;
 use App\Service\ProductManagerInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -70,4 +71,36 @@ class ProductController extends AbstractController
         return $this->render('shop/shop.html.twig', ["products" => $products]);
     }
 
+    #[Route('/product/{idProduct}/modifyPage', name: 'modifyProductPage')]
+    public function modifyProductPage(int $idProduct, ProductRepository $productRepository)
+    {
+        $product = $productRepository->find($idProduct);
+        return $this->render('product/productPageModify.html.twig', ["product" => $product]);
+    }
+
+    #[Route('/modify', name: 'modifyProduct', options: ["expose" => true], methods: ["POST"])]
+    public function modifyProduct(Request $request, ProductManagerInterface $productManager, ProductRepository $productRepository, EntityManagerInterface $entityManager) : Response {
+
+        $product = $productRepository->find($request->request->get('id'));
+        if($product->getName() != $request->request->get('name')) {
+            $product->setName($request->request->get('name'));
+        }
+        if($product->getRef() != $request->request->get('ref')) {
+            $product->setRef($request->request->get('ref'));
+        }
+        if($product->getType() != $request->request->get('type')) {
+            $product->setType($request->request->get('type'));
+        }
+        if($product->getPrice() != $request->request->get('price')) {
+            $product->setPrice($request->request->get('price'));
+        }
+        if($product->getImageProduct() != $request->request->get('img')) {
+            $productManager->saveProductPicture($product, $request->request->get('img'));
+        }
+
+        $entityManager->persist($product);
+        $entityManager->flush();
+
+        return $this->render('product/productPage.html.twig', ['product'=>$product]);
+    }
 }

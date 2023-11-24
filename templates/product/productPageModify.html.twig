@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block css %}<link rel="stylesheet" type="text/css" href="{{ asset("css/productPage.css") }}">{% endblock %}
+{% block title %}
+    {% if product is not null %}
+        {{ product.name }}
+        {% else %}
+        no data
+    {% endif %}
+{% endblock %}
+{% block main %}
+    <form method="post" action="{{ path("modifyProduct") }}">
+        <fieldset>
+            <legend><h1>{{ product.name }}</h1></legend>
+            <label for="id">Id :</label>
+            <input id="id" name="id" type="text" value="{{ product.id }}" readonly/>
+            <label for="name">Nom :</label>
+            <input id="name" name="name" type="text" value="{{ product.name }}"/>
+            <label for="ref">Ref :</label>
+            <input id="ref" name="ref" type="text" value="{{ product.ref }}"/>
+            <label for="type">Type :</label>
+            <input id="type" name="type" type="text" value="{{ product.type }}"/>
+            <label for="price">Prix :</label>
+            <input id="price" name="price" type="text" value="{{ product.price }}"/>
+            <label for="img">Image :</label>
+            <input id="img" name="img" type="file"/>
+            <input class="submit-button modify-product" type="submit">
+            <div id="fieldset-background" class="card"></div>
+        </fieldset>
+
+    </form>
+
+{% endblock %}
