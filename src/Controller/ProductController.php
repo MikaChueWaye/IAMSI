@@ -94,10 +94,10 @@ class ProductController extends AbstractController
         if($product->getPrice() != $request->request->get('price')) {
             $product->setPrice($request->request->get('price'));
         }
-        if($product->getImageProduct() != $request->request->get('img')) {
-            $productManager->saveProductPicture($product, $request->);
+        if (!is_null($request->files->get('productImage')))
+        {
+            $productManager->saveProductPicture($product, $request->files->get('productImage'));
         }
-
         $entityManager->persist($product);
         $entityManager->flush();
 

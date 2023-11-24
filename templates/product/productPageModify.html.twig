@@ -8,7 +8,7 @@
     {% endif %}
 {% endblock %}
 {% block main %}
-    <form method="post" action="{{ path("modifyProduct") }}">
+    <form method="post" action="{{ path("modifyProduct") }}" enctype="multipart/form-data">
         <fieldset>
             <legend><h1>{{ product.name }}</h1></legend>
             <label for="id">Id :</label>
@@ -21,8 +21,8 @@
             <input id="type" name="type" type="text" value="{{ product.type }}"/>
             <label for="price">Prix :</label>
             <input id="price" name="price" type="text" value="{{ product.price }}"/>
-            <label for="img">Image :</label>
-            <input id="img" name="img" type="file"/>
+            <label for="productImage">Image :</label>
+            <input id="productImage" name="productImage" type="file"/>
             <input class="submit-button modify-product" type="submit">
             <div id="fieldset-background" class="card"></div>
         </fieldset>
