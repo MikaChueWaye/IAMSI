@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Inventory;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,6 +21,20 @@ class InventoryRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Inventory::class);
+    }
+
+    /**
+     * @throws NonUniqueResultException
+     * @throws NoResultException
+     */
+    public function countProducts(int $userId): int
+    {
+        return $this->createQueryBuilder('p')
+            ->select('SUM(p.quantity) as totalQuantity')
+            ->andWhere('p.owner = :val')
+            ->setParameter('val', $userId)
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 
 //    /**

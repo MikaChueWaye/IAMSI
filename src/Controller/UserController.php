@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Repository\InventoryRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\User;
 use App\Form\UserType;
@@ -17,15 +19,20 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class UserController extends AbstractController
 {
+    /**
+     * @throws NonUniqueResultException
+     * @throws NoResultException
+     */
     #[isGranted('ROLE_USER')]
     #[Route('/user/inventory', name: 'userInventory')]
     public function userInventory(InventoryRepository $inventoryRepository): Response
     {
         $user = $this->getUser();
         $userId = $user->getId();
+        $nbProducts = $inventoryRepository->countProducts($userId);
         $inventory = $inventoryRepository->findBy(["owner"=>$userId]);
 
-        return $this->render('user/inventory.html.twig', ["inventory"=>$inventory, "user" => $user]);
+        return $this->render('user/inventory.html.twig', ["inventory"=>$inventory, "user" => $user, "nbProducts"=>$nbProducts]);
     }
 
     #[Route('/registration', name: 'registration', methods: ['GET', 'POST'])]
