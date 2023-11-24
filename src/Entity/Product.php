@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\File;
@@ -44,6 +45,9 @@ class Product
     #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
     private ?string $type = null;
+
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Inventory::class, orphanRemoval: true)]
+    private Collection $publications;
 
 
     public function getId(): ?int

@@ -17,8 +17,8 @@ class Inventory
     #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     private ?User $owner = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(inversedBy: 'invenory')]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     private ?Product $product = null;
 
     #[ORM\Column]
