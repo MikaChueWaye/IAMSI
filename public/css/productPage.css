@@ -50,7 +50,7 @@ input {
 }
 
 .add-button:active {
-    margin-top: 1px;
+    filter: brightness(70%);
 }
 
 .modify-button {
