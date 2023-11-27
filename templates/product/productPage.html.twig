@@ -34,7 +34,7 @@
             <label for="price">Prix :</label>
             <p>{{ product.price }}</p>
         </div>
-        <a class="add-button card">Ajouter au panier</a>
+        <a class="add-button card" href="{{ path('addToShoppingCart', {'idProduct':product.id}) }}">Ajouter au panier</a>
         <div id="fieldset-background" class="card"></div>
     </fieldset>
 
