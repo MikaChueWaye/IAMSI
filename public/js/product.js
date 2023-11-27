@@ -1,4 +1,5 @@
 function supprimerFeedy(event) {
+    event.preventDefault();
 	let button = event.target;
     let product = button.closest("#product");
     let xhr = new XMLHttpRequest();
