@@ -50,6 +50,7 @@
     background-color: var(--shop-background-color)!important;
     border-collapse: collapse;
     border-radius: 10px;
+    table-layout: fixed;
 }
 
 #user-inventory-table tr {
@@ -71,5 +72,9 @@
 }
 
 .inventory-item-image {
+    width: 50px;
+}
+
+td img {
     width: 50px;
 }

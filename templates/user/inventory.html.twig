@@ -25,12 +25,15 @@
         {% if inventory is empty %}
             <p> Votre inventaire est vide au boulot!</p>
         {% else %}
+            <tr class="card">
+                <td>Image</td>
+                <td>Nom</td>
+                <td>Référence</td>
+                <td>Type</td>
+                <td>Quantité</td>
+            </tr>
             {%  for ligne in inventory %}
-                    <tr class="card">
-                        <td><img src="{{ ligne.product.imageProduct ? asset("img/products/uploads/" ~ ligne.product.imageProduct ~ "" ) : asset("img/products/undefined.png") }}" alt="product picture"></td>
-                        <td class="inventory-item-name">{{ ligne.product.name }}</td>
-                        <td class="inventory-item-qtty">{{ ligne.quantity }}</td>
-                    </tr>
+                {{ include('user/inventoryItem.html.twig', {'ligne' : ligne}) }}
             {% endfor %}
         {% endif %}
     </table>
