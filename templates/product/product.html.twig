@@ -1,13 +1,13 @@
 {% if product is not null %}
     <a id="product" class="card item" href="{{ path("readProduct", {'idProduct': product.id}) }}">
+        {% if is_granted('PRODUCT_DELETE', product) %}
+            <button class="delete-product" data-product-id={{ product.id }}>X</button>
+        {%  endif %}
         <div class="card-image">
             <img src="{{ product.imageProduct ? asset("img/products/uploads/" ~ product.imageProduct ~ "" ) : asset("img/products/undefined.png") }}"
                  alt="product picture">
         </div>
         <div class="card-info">
-            {% if is_granted('PRODUCT_DELETE', product) %}
-                <button class="delete-product" data-product-id={{ product.id }}>X</button>
-            {%  endif %}
             <p>{{ product.name }}</p>
             <p class="price-tag">{{ product.price }} €</p>
         </div>
