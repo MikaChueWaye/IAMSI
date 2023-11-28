@@ -47,7 +47,7 @@ class Product
     private ?string $type = null;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Inventory::class, orphanRemoval: true)]
-    private Collection $publications;
+    private Collection $products;
 
 
     public function getId(): ?int

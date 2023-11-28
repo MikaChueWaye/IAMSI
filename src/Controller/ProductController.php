@@ -72,35 +72,28 @@ class ProductController extends AbstractController
     }
 
     #[Route('/product/{idProduct}/modifyPage', name: 'modifyProductPage')]
-    public function modifyProductPage(int $idProduct, ProductRepository $productRepository)
-    {
+    public function modifyProductPage(Request $request, int $idProduct, ProductRepository $productRepository, ProductManagerInterface $productManager, EntityManagerInterface $entityManager, FlashMessageHelper $flashMessageHelper){
+
         $product = $productRepository->find($idProduct);
-        return $this->render('product/productPageModify.html.twig', ["product" => $product]);
+        $form = $this->createForm(ProductType::class, $product, [
+            'method' => 'POST',
+            'action' => $this->generateURL('modifyProductPage', ['idProduct'=>$idProduct]),
+            'attr' => [
+                'enctype' => 'multipart/form-data',
+            ]
+        ]);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $picture = $form["imageProduct"]->getData();
+            $productManager->saveProductPicture($product, $picture);
+            $entityManager->persist($product);
+            $entityManager->flush();
+            $this->addFlash("success", "Produit modifié!");
+            return $this->redirectToRoute('readProduct', ['idProduct'=>$idProduct]);
+        }
+        $flashMessageHelper->addFormErrorsAsFlash($form);
+        return $this->render('product/productPageModify.html.twig', ["product"=>$product,"form" => $form]);
     }
 
-    #[Route('/modify', name: 'modifyProduct', options: ["expose" => true], methods: ["POST"])]
-    public function modifyProduct(Request $request, ProductManagerInterface $productManager, ProductRepository $productRepository, EntityManagerInterface $entityManager) : Response {
 
-        $product = $productRepository->find($request->request->get('id'));
-        if($product->getName() != $request->request->get('name')) {
-            $product->setName($request->request->get('name'));
-        }
-        if($product->getRef() != $request->request->get('ref')) {
-            $product->setRef($request->request->get('ref'));
-        }
-        if($product->getType() != $request->request->get('type')) {
-            $product->setType($request->request->get('type'));
-        }
-        if($product->getPrice() != $request->request->get('price')) {
-            $product->setPrice($request->request->get('price'));
-        }
-        if (!is_null($request->files->get('productImage')))
-        {
-            $productManager->saveProductPicture($product, $request->files->get('productImage'));
-        }
-        $entityManager->persist($product);
-        $entityManager->flush();
-
-        return $this->render('product/productPage.html.twig', ['product'=>$product]);
-    }
 }

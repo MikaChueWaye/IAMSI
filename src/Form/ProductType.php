@@ -18,18 +18,14 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('price',
-                IntegerType::class,
+            ->add('price', IntegerType::class,
                 [
-                    'attr' => [
-                        'min' => 0
-                    ]
+                    'attr' => ['min' => 0]
                 ]
             )
             ->add('ref', TextType::class)
             ->add('imageProduct', FileType::class, ["mapped" => false])
-            ->add('type',
-                ChoiceType::class,
+            ->add('type', ChoiceType::class,
                 [
                     'choices'  => [
                         'Blocs' => 'Blocs',
@@ -38,7 +34,7 @@ class ProductType extends AbstractType
                     ],
                 ]
             )
-            ->add('create', SubmitType::class)
+            ->add('submit', SubmitType::class)
         ;
     }
 

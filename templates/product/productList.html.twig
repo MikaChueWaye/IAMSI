@@ -23,7 +23,7 @@
         {{ form_label(form.type, 'Type : ') }}
         {{ form_widget(form.type, {'id' : 'type'}) }}
 
-        {{ form_widget(form.create, {'id' : "creation-new-submit", 'label' : "Créer"}) }}
+        {{ form_widget(form.submit, {'id' : "creation-new-submit", 'label' : "Créer"}) }}
         <div id="fieldset-background" class="card"></div>
     </fieldset>
     {{ form_rest(form) }}
