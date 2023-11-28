@@ -156,6 +156,9 @@ nav *:hover {
 .card-image img {
     height: 100%;
     z-index: 11;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
 }
 
 .card-info {

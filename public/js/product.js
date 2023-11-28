@@ -1,4 +1,4 @@
-function supprimerFeedy(event) {
+function deleteProduct(event) {
     event.preventDefault();
 	let button = event.target;
     let product = button.closest("#product");
@@ -13,5 +13,5 @@ function supprimerFeedy(event) {
 
 let buttons = document.getElementsByClassName("delete-product");
 Array.from(buttons).forEach(function (button) {
-    button.addEventListener("click", supprimerFeedy);
+    button.addEventListener("click", deleteProduct);
 });

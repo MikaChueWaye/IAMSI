@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block css %}<link rel="stylesheet" type="text/css" href="{{ asset("css/productPage.css") }}">{% endblock %}
+{% block css %}<link rel="stylesheet" type="text/css" href="{{ asset("css/productList.css") }}">{% endblock %}
 {% block title %}
     {% if product is not null %}
         {{ product.name }}
@@ -8,25 +8,29 @@
     {% endif %}
 {% endblock %}
 {% block main %}
-    <form method="post" action="{{ path("modifyProduct") }}" enctype="multipart/form-data">
-        <fieldset>
-            <legend><h1>{{ product.name }}</h1></legend>
-            <label for="id">Id :</label>
-            <input id="id" name="id" type="text" value="{{ product.id }}" readonly/>
-            <label for="name">Nom :</label>
-            <input id="name" name="name" type="text" value="{{ product.name }}"/>
-            <label for="ref">Ref :</label>
-            <input id="ref" name="ref" type="text" value="{{ product.ref }}"/>
-            <label for="type">Type :</label>
-            <input id="type" name="type" type="text" value="{{ product.type }}"/>
-            <label for="price">Prix :</label>
-            <input id="price" name="price" type="text" value="{{ product.price }}"/>
-            <label for="productImage">Image :</label>
-            <input id="productImage" name="productImage" type="file"/>
-            <input class="submit-button modify-product" type="submit">
-            <div id="fieldset-background" class="card"></div>
-        </fieldset>
+    {{ form_start(form) }}
+    <fieldset>
+        <legend>Modification de {{ product.name }}</legend>
+        {{ form_label(form.name, 'Nom : ') }}
+        {{ form_widget(form.name, {'id' : 'name', 'attr' : {'placeholder' : 'Entre 4 et 20 caractères'}}) }}
 
-    </form>
+        {{ form_label(form.price, 'Prix : ') }}
+        {{ form_widget(form.price, {'id' : 'price'}) }}
+
+        {{ form_label(form.ref, 'Reference : ') }}
+        {{ form_widget(form.ref, {'id' : 'ref'}) }}
+
+        {{ form_label(form.imageProduct, 'Image du produit : ') }}
+        <p class="help-input-form">Format .jpg ou .png  (10Mo)</p>
+        {{ form_widget(form.imageProduct, {'required' : '', 'attr' : {'accept' : 'image/png, image/jpeg'}}) }}
+
+        {{ form_label(form.type, 'Type : ') }}
+        {{ form_widget(form.type, {'id' : 'type'}) }}
+
+        {{ form_widget(form.submit, {'id' : "creation-new-submit", 'label' : "Modifier"}) }}
+        <div id="fieldset-background" class="card"></div>
+    </fieldset>
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
 
 {% endblock %}

@@ -17,6 +17,9 @@ img {
     padding: 30px;
     border: solid rgba(255, 255, 255, 0.1) 1px;
     border-radius: 10px;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
     z-index: 10;
 }
 
