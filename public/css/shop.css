@@ -33,6 +33,15 @@ main {
     margin: 0 50px 0 50px;
 }
 
-#shop-types * {
-    margin-right: 50px;
+#shop-types {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#shop-types a {
+    height: 50px;
+    line-height: 45px;
+    padding: 0 20px 0 20px;
+    text-align: center;
 }
