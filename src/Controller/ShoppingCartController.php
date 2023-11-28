@@ -3,14 +3,10 @@
 namespace App\Controller;
 
 use App\Repository\ProductRepository;
-use App\Service\FlashMessageHelper;
 use App\Service\FlashMessageHelperInterface;
-use MongoDB\Driver\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ShoppingCartController extends AbstractController
@@ -25,10 +21,10 @@ class ShoppingCartController extends AbstractController
      */
 
     #[Route('/product/{idProduct}/addToShoppingCart', name: 'addToShoppingCart')]
-    public function addToShoppingCart(int $idProduct, SessionInterface $session, ProductRepository $repository, FlashMessageHelperInterface $flashMessageHelper): Response
+    public function addToShoppingCart(int $idProduct, RequestStack $session, ProductRepository $repository, FlashMessageHelperInterface $flashMessageHelper): Response
     {
         // Récupérer le panier actuel depuis la session
-        $shoppingCart = $session->get('shoppingCart', []);
+        $shoppingCart = $session->getSession()->get('shoppingCart', []);
 
         // Ajouter l'ID de l'article au panier
         if($repository->find($idProduct) != null){
@@ -38,7 +34,8 @@ class ShoppingCartController extends AbstractController
             else{
                 $shoppingCart[$idProduct] = 1;
             }
-            $session->set('shoppingCart', $shoppingCart);
+            $session->getSession()->set('shoppingCart', $shoppingCart);
+            $this->addFlash("success", "Le produit a bien été ajouté au panier");
         }
         else {
             $this->addFlash("error","Le produit que vous avez essayé d'ajouter à votre panier n'existe pas");
@@ -52,11 +49,11 @@ class ShoppingCartController extends AbstractController
     }
 
 
-    #[Route('/product/{idProduct}/removeToShoppingCart', name: 'removeToShoppingCart')]
-    public function removeToShoppingCart(int $idProduct, SessionInterface $session): Response
+    #[Route('/product/{idProduct}/removeToShoppingCartItem', name: 'removeShoppingCartItem')]
+    public function removeShoppingCartItem(int $idProduct, RequestStack $session): Response
     {
         // Récupérer le panier actuel depuis la session
-        $shoppingCart = $session->get('shoppingCart', []);
+        $shoppingCart = $session->getSession()->get('shoppingCart', []);
 
         // Ajouter l'ID de l'article au panier
         if(!empty($shoppingCart[$idProduct])){
@@ -64,10 +61,10 @@ class ShoppingCartController extends AbstractController
         }
 
         // Enregistrer le panier mis à jour dans la session
-        $session->set('shoppingCart', $shoppingCart);
+        $session->getSession()->set('shoppingCart', $shoppingCart);
 
-        dd($session->get('shoppingCart'));
-        //return $this->redirectToRoute('shop'); // Rediriger vers la page d'accueil (ou une autre page)
+        //dd($session->getSession()->get('shoppingCart'));
+        return $this->redirectToRoute('shoppingCart'); // Rediriger vers la page d'accueil (ou une autre page)
     }
 
     /**
@@ -76,10 +73,10 @@ class ShoppingCartController extends AbstractController
      * @return Response
      */
     #[Route('/shoppingCart', name: 'shoppingCart', options: ["expose" => false])]
-    public function showShoppingCart(SessionInterface $session, ProductRepository $repository): Response
+    public function showShoppingCart(RequestStack $session, ProductRepository $repository): Response
     {
         // Récupérer le panier depuis la session
-        $shoppingCart = $session->get('shoppingCart', []);
+        $shoppingCart = $session->getSession()->get('shoppingCart', []);
 
         $panierwithData = [];
 

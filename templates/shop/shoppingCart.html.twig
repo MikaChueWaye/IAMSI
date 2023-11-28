@@ -23,13 +23,13 @@
                         <tr class="card">
                             <td><img src="{{ item.product.imageProduct ? asset("img/products/uploads/" ~ item.product.imageProduct ~ "" ) : asset("img/products/undefined.png") }}"
                                      alt="product picture"></td>
-                            <td></td>
+                            <td>{{ item.product.name }}</td>
                             <td>{{ item.product.ref }}</td>
                             <td>{{ item.product.price }}</td>
                             <td><label>
                                     <input type="number" max="999" min="1" value={{ item.quantity }} >
                                 </label></td>
-                            <td><button class="delete-product-panier">  X  </button></td>
+                            <td><a class="delete-product-panier" href="{{ path('removeShoppingCartItem', {'idProduct': item.product.id}) }}">  X  </a></td>
                         </tr>
                     {% endfor %}
                 </table>
