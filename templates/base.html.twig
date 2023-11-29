@@ -35,10 +35,10 @@
 
         <div id="flashes-container">
             {% for flashMsg in app.flashes("success") %}
-                <span class="flashes flashes-success">{{ flashMsg }}</span>
+                <span class="flashes flashes-succes card">{{ flashMsg }}</span>
             {% endfor %}
             {% for flashMsg in app.flashes("error") %}
-                <span class="flashes flashes-error">{{ flashMsg }}</span>
+                <span class="flashes flashes-error card">{{ flashMsg }}</span>
             {% endfor %}
         </div>
 
