@@ -18,11 +18,11 @@
                         <td>Description</td>
                         <td>Prix</td>
                         <td>Qtte</td>
+                        <td></td>
                     </tr>
                     {% for item in items %}
                         <tr class="card">
-                            <td><img src="{{ item.product.imageProduct ? asset("img/products/uploads/" ~ item.product.imageProduct ~ "" ) : asset("img/products/undefined.png") }}"
-                                     alt="product picture"></td>
+                            <td><a href="{{ path("readProduct", {'idProduct': item.product.id}) }}"><img src="{{ item.product.imageProduct ? asset("img/products/uploads/" ~ item.product.imageProduct ~ "" ) : asset("img/products/undefined.png") }}" alt="product picture"></a></td>
                             <td>{{ item.product.name }}</td>
                             <td>{{ item.product.ref }}</td>
                             <td>{{ item.product.price }}</td>
@@ -40,23 +40,19 @@
         </fieldset><fieldset>
             <legend>Récapitulatif de la commande :</legend>
             <div id="shopping-cart-receipt">
-                <p style="margin-bottom: 5px">Articles:</p>
+                <p style="margin-bottom: 10px">Articles:</p>
                 {% if items | length <= 0 %}
                     <p> Aucun produit dans le panier :(</p>
 
                 {% else %}
 
                 {% for item in items %}
-                    <div class="receipt-item">
-                        <div>- {{ item.product.name }}</div>
-                        <div class="dot"></div>
-                        <div>{{  item.product.price * item.quantity }} €</div>
-                    </div>
+                    {{ include('shop/shoppingCartProduct.html.twig', {'item' : item}) }}
                 {% endfor %}
 
                 {% endif %}
 
-                <div class="line"></div><br>
+                <div class="line"></div>
                 <div class="receipt-item">
                     {% if items | length > 0 %}
 
@@ -66,7 +62,7 @@
                     {% endfor %}
                     <div style="white-space: nowrap">Montant total:</div>
                     <div class="dot"></div>
-                    <div>{{ i }} €</div>
+                    <div class="price">{{ i }} €</div>
 
                     </div>
                     <p style="font-size: x-small">Le total de la commande inclut la TVA</p>

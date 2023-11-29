@@ -57,23 +57,28 @@ input {
 .receipt-item {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    gap: 10px;
 }
 
-.receipt-item > div{
-    white-space: nowrap;
+.receipt-item > div {
+    align-self: center;
+}
+
+.price {
+    min-width: 50px;
 }
 
 .dot {
     border-bottom: dashed 1px white;
+    height: 1px;
     width: 100%;
-    margin-bottom: 5px;
+    margin-top: 10px;
 }
 
 .line {
     border-bottom: solid 1px white;
     width: 100%;
-    margin-bottom: 5px;
+    margin: 25px 0 20px 0;
 }
 
 .delete-product-panier {
