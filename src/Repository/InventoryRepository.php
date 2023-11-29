@@ -27,7 +27,7 @@ class InventoryRepository extends ServiceEntityRepository
      * @throws NonUniqueResultException
      * @throws NoResultException
      */
-    public function countProducts(int $userId): int
+    public function countProducts(int $userId): ?int
     {
         return $this->createQueryBuilder('p')
             ->select('SUM(p.quantity) as totalQuantity')
