@@ -71,6 +71,7 @@ class ProductController extends AbstractController
         return $this->render('shop/shop.html.twig', ["products" => $products]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/product/{idProduct}/modifyPage', name: 'modifyProductPage')]
     public function modifyProductPage(Request $request, int $idProduct, ProductRepository $productRepository, ProductManagerInterface $productManager, EntityManagerInterface $entityManager, FlashMessageHelper $flashMessageHelper){
 
