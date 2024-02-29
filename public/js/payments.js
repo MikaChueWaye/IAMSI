@@ -67,7 +67,7 @@ async function payAndCloseInvoice(invoiceId, amount) {
         },
         body: JSON.stringify({
             "arrayofamounts": {[invoiceId]:{"amount":amount, "multicurrency_amount": ""}}, //id de la facture (18), qtte d'argent ex: "arrayofamounts": {"18":{"amount":"144", "multicurrency_amount": ""}}
-            "datepaye": ""+ Math.round(Date.now()/1000), //date de paiement en Unix ex: "1701449506"
+            "datepaye": Math.round(Date.now()/1000), //date de paiement en Unix ex: "1701449506"
             "paymentid": 4, // paiement par espèce
             "closepaidinvoices": "yes", //???
             "accountid": 1 //???
