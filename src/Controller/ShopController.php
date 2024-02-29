@@ -12,8 +12,12 @@ class ShopController extends AbstractController
     #[Route('/shop', name: 'shop')]
     public function shop(ProductRepository $productRepository): Response
     {
+        $api = new DolibarrAPIController();
+        $api->readAllProducts();
+
         $products = $productRepository->findAll();
         return $this->render('shop/shop.html.twig', ["products" => $products]);
     }
+
 
 }

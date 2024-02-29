@@ -19,5 +19,9 @@
         </fieldset>
         {{ form_rest(form) }}
         {{ form_end(form) }}
+        <div id="registration-text">
+            <p>Vous avez déjà un compte?</p>
+            <p>Connectez-vous <a href="{{ path("connection") }}">ici</a></p>
+        </div>
     </main>
 {% endblock %}

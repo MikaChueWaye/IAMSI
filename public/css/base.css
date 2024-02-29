@@ -248,7 +248,7 @@ input {
 
 .flashes {
     position: absolute;
-    bottom: 75px;
+    bottom: 70px;
     right: 80px;
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.37);

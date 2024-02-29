@@ -1,6 +1,8 @@
 {% extends "base.html.twig" %}
 {% block title %}Shopping Cart{% endblock %}
 {% block css %}<link rel="stylesheet" type="text/css" href="{{ asset("css/shoppingCart.css") }}">{% endblock %}
+{% block javascript %}<script defer type="text/javascript" src="{{ asset("js/payments.js") }}"></script>{% endblock %}
+
 {% block main %}
 <main>
     <div id="shopping-cart">
@@ -37,40 +39,46 @@
 
             </div>
             <div id="fieldset-background"></div>
-        </fieldset><fieldset>
-            <legend>Récapitulatif de la commande :</legend>
-            <div id="shopping-cart-receipt">
-                <p style="margin-bottom: 10px">Articles:</p>
-                {% if items | length <= 0 %}
-                    <p> Aucun produit dans le panier :(</p>
+        </fieldset>
+        <div>
+            <fieldset>
+                <legend>Récapitulatif de la commande :</legend>
+                <div id="shopping-cart-receipt">
+                    <p style="margin-bottom: 10px">Articles:</p>
+                    {% if items | length <= 0 %}
+                        <p> Aucun produit dans le panier :(</p>
 
-                {% else %}
+                    {% else %}
 
-                {% for item in items %}
-                    {{ include('shop/shoppingCartProduct.html.twig', {'item' : item}) }}
-                {% endfor %}
+                        {% for item in items %}
+                            {{ include('shop/shoppingCartProduct.html.twig', {'item' : item}) }}
+                        {% endfor %}
 
-                {% endif %}
+                    {% endif %}
 
-                <div class="line"></div>
-                <div class="receipt-item">
-                    {% if items | length > 0 %}
+                    <div class="line"></div>
+                    <div class="receipt-item">
+                        {% if items | length > 0 %}
 
-                    {% set i = 0 %}
-                    {% for item in items %}
-                        {%  set i = item.quantity*item.product.price+i %}
-                    {% endfor %}
-                    <div style="white-space: nowrap">Montant total:</div>
-                    <div class="dot"></div>
-                    <div class="price">{{ i }} €</div>
+                        {% set i = 0 %}
+                        {% for item in items %}
+                            {%  set i = item.quantity*item.product.price+i %}
+                        {% endfor %}
+                        <div style="white-space: nowrap">Montant total:</div>
+                        <div class="dot"></div>
+                        <div class="price">{{ i }} €</div>
 
                     </div>
                     <p style="font-size: x-small">Le total de la commande inclut la TVA</p>
+
+                    <div class="pay-div">
+                        <input type="button" onclick="test()" class="pay-button card" value="Payer">
+                    </div>
                     {% endif %}
 
-            </div>
-            <div id="fieldset-background" class="card"></div>
-        </fieldset>
+                </div>
+            </fieldset>
+        </div>
     </div>
 
 </main>
